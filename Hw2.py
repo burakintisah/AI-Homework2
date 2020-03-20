@@ -78,7 +78,7 @@ def possible_states(state):
 
 def generate_state():
     state = [[1, 2, 3], [4, 5, 6], [7, 8, -1]]
-    iter = 100
+    iter = 50
 
     for i in range(iter):
         new_states = possible_states(state)
@@ -151,13 +151,20 @@ def searchStats(state):
 
             for pt in new_paths:
                 last_state = pt[len(pt) - 1]
+                not_found = True
+                not_found2 = True
                 for q in queue:
-                    for state in q:
-                        if last_state == state:
-                            if q.index(state) > len(pt):
-                                queue.remove(q)
-                            else:
-                                new_paths.remove(pt)
+                    if  not_found :
+                        for state in q:
+                            if not_found2:
+                                if last_state == state:
+                                    if q.index(state) > len(pt):
+                                        queue.remove(q)
+                                    else:
+                                        new_paths.remove(pt)
+                                        not_found = False
+                                        not_found2 = False
+
 
             for pt in new_paths:
                 print(pt)
@@ -166,7 +173,7 @@ def searchStats(state):
             sorted(queue, key=h1_helper)
 
             print("End of loop, press Enter to continue.")
-            input()
+            #input()
 
         else:
             print("The solution could not found for the initial state.")
