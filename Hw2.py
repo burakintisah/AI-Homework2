@@ -185,6 +185,8 @@ def searchStats(state):
                     print("Extension includes loop, discarded.")
             print("New paths that are obtained by extending:")
 
+
+
             for pt in new_paths:
                 last_state = pt[len(pt) - 1]
                 not_found = True
@@ -346,5 +348,9 @@ for table in solution_27:
             w.create_text(x + 25, y + 25, font="Times 40 bold", text=str(num) , fill="blue")
     table_nu = table_nu + 1
 
+scrollbar = Scrollbar(master,orient='horizontal')
+scrollbar.pack(side=BOTTOM, fill=X)
+scrollbar.config(command=w.xview)	
+	
 w.pack()
 master.mainloop()
