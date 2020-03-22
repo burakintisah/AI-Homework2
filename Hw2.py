@@ -30,7 +30,8 @@ def move(state, x, y, dir):
         if state[y - 1][x] == -1:
             state[y - 1][x] = state[y][x]
             state[y][x] = -1
-            return 1
+            st = str(state[y - 1][x] ) + "down"
+            return 1, st
         else:
             print("Wrong move")
             return -1
@@ -38,7 +39,8 @@ def move(state, x, y, dir):
         if state[y + 1][x] == -1:
             state[y + 1][x] = state[y][x]
             state[y][x] = -1
-            return 1
+            st = str(state[y + 1][x]) + "up"
+            return 1,st
         else:
             print("Wrong move")
             return -1
@@ -46,6 +48,7 @@ def move(state, x, y, dir):
         if state[y][x - 1] == -1:
             state[y][x - 1] = state[y][x]
             state[y][x] = -1
+            st = str(state[y][x-1]) + "right"
             return 1
         else:
             print("Wrong move")
@@ -54,6 +57,7 @@ def move(state, x, y, dir):
         if state[y][x + 1] == -1:
             state[y][x + 1] = state[y][x]
             state[y][x] = -1
+            st = str(state[y][x]) + "left"
             return 1
         else:
             print("Wrong move")
@@ -142,24 +146,24 @@ def searchStats(state):
     queue.append(path)
     while True:
         if len(queue) != 0:
-            print ("A* search algorithm is starting...")
-            print("Start of loop.")
+            #print ("A* search algorithm is starting...")
+            #print("Start of loop.")
 
-            print("Paths in queue:")
-            for p in queue:
-                print(p)
+            #print("Paths in queue:")
+            #for p in queue:
+                #print(p)
             pth = queue.pop(0)
 
-            print("Path to extend:")
-            print(pth)
+            #print("Path to extend:")
+            #print(pth)
 
             last_state = pth[len(pth) - 1]
             nxt_states = possible_states(last_state)
             new_paths = []
 
-            print("Possible next states:")
-            for st in nxt_states:
-                print(st)
+            #print("Possible next states:")
+            #for st in nxt_states:
+                #print(st)
 
             for st in nxt_states:
 
@@ -168,24 +172,22 @@ def searchStats(state):
                     new_path = pth
                     new_path.append(st)
 
-                    for i in new_path:
-                        print_state(i)
+                    #for i in new_path:
+                        #print_state(i)
                     return new_path
-                print("Checking:")
-                print(st)
+                #print("Checking:")
+                #print(st)
                 if st not in pth:
-                    print("Does not contain loop, extending path.")
+                    #print("Does not contain loop, extending path.")
                     # Searches whether or not that state is occurred before.
                     # If not adding it to the new paths list.
                     new_path = copy.deepcopy(pth)
                     new_path.append(st)
-                    print(new_path)
+                    #print(new_path)
                     new_paths.append(new_path)
-                else:
-                    print("Extension includes loop, discarded.")
-            print("New paths that are obtained by extending:")
-
-
+                #else:
+                    #print("Extension includes loop, discarded.")
+            #print("New paths that are obtained by extending:")
 
             for pt in new_paths:
                 last_state = pt[len(pt) - 1]
@@ -205,23 +207,17 @@ def searchStats(state):
 
 
             for pt in new_paths:
-                print(pt)
+                #print(pt)
                 queue.append(pt)
 
             sorted(queue, key=h1_helper)
 
-            print("End of loop, press Enter to continue.")
+            #print("End of loop, press Enter to continue.")
 
 
         else:
-            print("The solution could not found for the initial state.")
+            #print("The solution could not found for the initial state.")
             return
-
-print("------------")
-s = generate_state()
-print_state( s )
-print(h1(s))
-searchStats(s)
 
 """
 First We are generating 30 different initial states of the puzzle 
@@ -240,66 +236,12 @@ Number of moves added to an array which will be used to draw the plot
 As it is stated in the homework description We did not use loop (avoided loops).
 each solution_  will include the solution paths that has been achieved for each initial state
 '''
-solution_0 = searchStats(initial_states[0])
-no_of_moves.append(len(solution_0))
-solution_1 = searchStats(initial_states[1])
-no_of_moves.append(len(solution_1))
-solution_2 = searchStats(initial_states[2])
-no_of_moves.append(len(solution_2))
-solution_3 = searchStats(initial_states[3])
-no_of_moves.append(len(solution_3))
-solution_4 = searchStats(initial_states[4])
-no_of_moves.append(len(solution_4))
-solution_5 = searchStats(initial_states[5])
-no_of_moves.append(len(solution_5))
-solution_6 = searchStats(initial_states[6])
-no_of_moves.append(len(solution_6))
-solution_7 = searchStats(initial_states[7])
-no_of_moves.append(len(solution_7))
-solution_8 = searchStats(initial_states[8])
-no_of_moves.append(len(solution_8))
-solution_9 = searchStats(initial_states[9])
-no_of_moves.append(len(solution_9))
-solution_10 = searchStats(initial_states[10])
-no_of_moves.append(len(solution_10))
-solution_11= searchStats(initial_states[11])
-no_of_moves.append(len(solution_11))
-solution_12 = searchStats(initial_states[12])
-no_of_moves.append(len(solution_12))
-solution_13 = searchStats(initial_states[13])
-no_of_moves.append(len(solution_13))
-solution_14 = searchStats(initial_states[14])
-no_of_moves.append(len(solution_14))
-solution_15 = searchStats(initial_states[15])
-no_of_moves.append(len(solution_15))
-solution_16 = searchStats(initial_states[16])
-no_of_moves.append(len(solution_16))
-solution_17 = searchStats(initial_states[17])
-no_of_moves.append(len(solution_17))
-solution_18 = searchStats(initial_states[18])
-no_of_moves.append(len(solution_18))
-solution_19 = searchStats(initial_states[18])
-no_of_moves.append(len(solution_19))
-solution_20 = searchStats(initial_states[20])
-no_of_moves.append(len(solution_20))
-solution_21 = searchStats(initial_states[21])
-no_of_moves.append(len(solution_21))
-solution_22 = searchStats(initial_states[22])
-no_of_moves.append(len(solution_22))
-solution_23 = searchStats(initial_states[23])
-no_of_moves.append(len(solution_23))
-solution_24 = searchStats(initial_states[24])
-no_of_moves.append(len(solution_24))
-solution_25 = searchStats(initial_states[25])
-no_of_moves.append(len(solution_25))
-solution_26 = searchStats(initial_states[26])
-no_of_moves.append(len(solution_26))
-solution_27 = searchStats(initial_states[27])
-no_of_moves.append(len(solution_27))
-solution_28 = searchStats(initial_states[28])
-no_of_moves.append(len(solution_28))
-solution_29 = searchStats(initial_states[29])
-no_of_moves.append(len(solution_29))
+
+solutions = []
+
+for i in range (0,30):
+    solutions.append(searchStats(initial_states[i]))
+    no_of_moves.append(len(solutions[i]))
 
 # Initialize the plot
 fig = plt.figure(figsize=(10,10))
@@ -319,38 +261,63 @@ plt.show()
 
 master = Tk()
 master.title("ArcticFoxes")
-w = Canvas(master, width=5000, height=8000, bg="white")
+w = Canvas(master, width=1500, height=1000, bg="white")
 
 offset_x = 15
-offset_y = 15
+offset_y = 50
 size = 50
 table_nu = 0
-for table in solution_5:
+
+w.create_text(offset_x+150, offset_y-25 , font="Times 20", text="Trace for state no. 12:" , fill="red")
+show1 = solutions[12]
+for table in show1:
     for i in range(3):
         for j in range(3):
             x = 300* table_nu + 50 * i + offset_x
             y = 50 * j + offset_y
 
             num = table[j][i]
-            w.create_rectangle(x, y, x + size, y + size, outline="black", width=1)
-            w.create_text(x + 25, y + 25, font="Times 40 bold", text=str(num) , fill="blue")
+            if num == -1:
+                w.create_rectangle(x, y, x + size, y + size, outline="black", width=3,fill="gray")
+            else:
+                w.create_rectangle(x, y, x + size, y + size, outline="black", width=3)
+                w.create_text(x + 25, y + 25, font="Times 20 bold", text=str(num) , fill="blue")
+
     table_nu = table_nu + 1
+    if show1.index(table) == 0:
+        w.create_text(x-15,y+100,font="Times 20", text="Initial", fill="red")
+    elif show1.index(table) == len(show1)-1:
+        w.create_text(x - 15, y + 100, font="Times 20", text="Goal", fill="red")
+    if show1.index(table) != len(show1)-1:
+        w.create_line(x+90, y-25, x+170, y-25,fill='blue', arrow='last', width=4)
 
 table_nu = 0
-for table in solution_27:
+w.create_text(offset_x+150, offset_y + 475 , font="Times 20", text="Trace for state no. 22:" , fill="red")
+show2 = solutions[22]
+for table in show2:
+
     for i in range(3):
         for j in range(3):
             x = 300* table_nu + 50 * i + offset_x
-            y = 500 + 50 * j + offset_y
+            y = 50 * j + offset_y + 500
 
             num = table[j][i]
-            w.create_rectangle(x, y, x + size, y + size, outline="black", width=1)
-            w.create_text(x + 25, y + 25, font="Times 40 bold", text=str(num) , fill="blue")
+            if num == -1:
+                w.create_rectangle(x, y, x + size, y + size, outline="black", width=3, fill="gray")
+            else:
+                w.create_rectangle(x, y, x + size, y + size, outline="black", width=3)
+                w.create_text(x + 25, y + 25, font="Times 20 bold", text=str(num) , fill="blue")
     table_nu = table_nu + 1
+    if show2.index(table) == 0:
+        w.create_text(x-15,y+100,font="Times 20", text="Initial" , fill="red")
+    if show2.index(table) == len(show2)-1:
+            w.create_text(x - 15, y + 100, font="Times 20", text="Goal", fill="red")
+    if show2.index(table) != len(show2) - 1:
+        w.create_line(x + 90, y - 25, x + 170, y - 25, fill='blue', arrow='last', width=3)
 
 scrollbar = Scrollbar(master,orient='horizontal')
+scrollbar.config(command=w.xview)
 scrollbar.pack(side=BOTTOM, fill=X)
-scrollbar.config(command=w.xview)	
-	
+
 w.pack()
 master.mainloop()
