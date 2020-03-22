@@ -3,6 +3,8 @@ import copy
 import matplotlib.pyplot as plt
 from tkinter import *
 
+
+
 def print_state(state):
     '''
     Prints the current state
@@ -285,11 +287,26 @@ for table in show1:
 
     table_nu = table_nu + 1
     if show1.index(table) == 0:
-        w.create_text(x-15,y+100,font="Times 20", text="Initial", fill="red")
+        w.create_text(x-10,y+100,font="Times 20", text="Initial", fill="red")
     elif show1.index(table) == len(show1)-1:
-        w.create_text(x - 15, y + 100, font="Times 20", text="Goal", fill="red")
-    if show1.index(table) != len(show1)-1:
-        w.create_line(x+90, y-25, x+170, y-25,fill='blue', arrow='last', width=4)
+        w.create_text(x - 10, y + 100, font="Times 20", text="Goal", fill="red")
+
+    if show1.index(table) != 0:
+        w.create_line(x-215, y-25, x-125, y-25, fill='blue', arrow='last', width=4)
+        before = show1[show1.index(table)-1]
+        for i in range (0,3):
+            for j in range (0,3):
+                if before[i][j] != table [i][j] and before[i][j] != -1:
+                    if i>0 and before[i-1][j] == -1:
+                        w.create_text(x - 175, y - 50, font="Times 20",text=str(before[i][j])+" up")
+                    elif i<2 and before[i+1][j] == -1:
+                        w.create_text(x - 175, y - 50, font="Times 20",text=str(before[i][j])+" down")
+                    elif j>0 and before[i][j-1] == -1:
+                        w.create_text(x - 175, y - 50, font="Times 20",text=str(before[i][j])+" left")
+                    elif j<2 and before[i][j+1] == -1:
+                        w.create_text(x - 175, y - 50, font="Times 20",text=str(before[i][j])+" right")
+
+
 
 table_nu = 0
 w.create_text(offset_x+150, offset_y + 475 , font="Times 20", text="Trace for state no. 22:" , fill="red")
@@ -309,11 +326,24 @@ for table in show2:
                 w.create_text(x + 25, y + 25, font="Times 20 bold", text=str(num) , fill="blue")
     table_nu = table_nu + 1
     if show2.index(table) == 0:
-        w.create_text(x-15,y+100,font="Times 20", text="Initial" , fill="red")
+        w.create_text(x-10,y+100,font="Times 20", text="Initial" , fill="red")
     if show2.index(table) == len(show2)-1:
-            w.create_text(x - 15, y + 100, font="Times 20", text="Goal", fill="red")
-    if show2.index(table) != len(show2) - 1:
-        w.create_line(x + 90, y - 25, x + 170, y - 25, fill='blue', arrow='last', width=3)
+            w.create_text(x - 10, y + 100, font="Times 20", text="Goal", fill="red")
+    if show2.index(table) != 0:
+        w.create_line(x - 215, y - 25, x - 125, y - 25, fill='blue', arrow='last', width=4)
+        before = show2[show2.index(table) - 1]
+        for i in range(0, 3):
+            for j in range(0, 3):
+                if before[i][j] != table[i][j] and before[i][j] != -1:
+                    if i > 0 and before[i - 1][j] == -1:
+                        w.create_text(x - 175, y - 50, font="Times 20", text=str(before[i][j]) + " up")
+                    elif i < 2 and before[i + 1][j] == -1:
+                        w.create_text(x - 175, y - 50, font="Times 20", text=str(before[i][j]) + " down")
+                    elif j > 0 and before[i][j - 1] == -1:
+                        w.create_text(x - 175, y - 50 , font="Times 20", text=str(before[i][j]) + " left")
+                    elif j < 2 and before[i][j + 1] == -1:
+                        w.create_text(x - 175, y - 50, font="Times 20", text=str(before[i][j]) + " right")
+
 
 scrollbar = Scrollbar(master,orient='horizontal')
 scrollbar.config(command=w.xview)
