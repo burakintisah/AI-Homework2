@@ -180,7 +180,7 @@ def searchStats(state):
             for st in nxt_states:
 
                 if st == [[1, 2, 3], [4, 5, 6], [7, 8, -1]]:
-                    print("The solution is found.")
+                    print("     the solution is found.")
                     new_path = pth
                     new_path.append(st)
 
@@ -226,6 +226,8 @@ def searchStats(state):
 """
 First We are generating 30 different initial states of the puzzle 
 After generating, it is displayed as textual representation on the console
+
+NOTE: THE INITIAL STATES ARE DISPLAYED AT THE BEGINNING. THEREFORE TO SEE THE ALL REPRESENTATIONS SCROLL UP ON THE CONSOLE.
 """
 
 initial_states = []
@@ -249,8 +251,9 @@ each solution_  will include the solution paths that has been achieved for each 
 solutions = []
 
 for i in range (0,30):
+    print("For initial state " + str(i + 1) + "...")
     solutions.append(searchStats(initial_states[i]))
-    print(str(i+1))
+
     no_of_moves.append(len(solutions[i]))
 
 # Initialize the plot
@@ -285,7 +288,7 @@ table_nu = 0
 ''' 
 Following part traces two of 30 solutions. Each step demonstrated with the help of GUI.
 '''
-w.create_text(offset_x+150, offset_y-25 , font="Times 20", text="Trace for state no. 12:" , fill="red")
+w.create_text(offset_x+150, offset_y-25 , font="Times 20", text="Trace for state no. 13:" , fill="red")
 show1 = solutions[12]
 for table in show1:
     for i in range(3):
@@ -324,7 +327,7 @@ for table in show1:
 
 
 table_nu = 0
-w.create_text(offset_x+150, offset_y + 475 , font="Times 20", text="Trace for state no. 22:" , fill="red")
+w.create_text(offset_x+150, offset_y + 475 , font="Times 20", text="Trace for state no. 23:" , fill="red")
 show2 = solutions[22]
 for table in show2:
 
@@ -361,7 +364,7 @@ for table in show2:
 
 '''
 A horizontal scrollbar is added since we may have solutions with high number of steps.
-Just to be reminder we didnt add the mouse wheel event handler. If all the solution is not visible on the screen, it should be moved right from the bottom scrollbar.
+Just to be reminder we didnt add the mouse wheel event handler. If all the solution is not visible on the screen, it should be moved right from the bottom scrollbar (need to press the arrow button).
 '''
 scrollbar = Scrollbar(master,orient='horizontal')
 scrollbar.config(command=w.xview)
