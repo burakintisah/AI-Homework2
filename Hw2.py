@@ -3,7 +3,6 @@ import copy
 import matplotlib.pyplot as plt
 from tkinter import *
 
-
 '''
 CS 461 Homework 2
 
@@ -15,9 +14,6 @@ Burak Can BINER
 
 We used h1: number of misplaced tiles as our heuristic.
 
-Algorithm to follow:
-
-Output: 
 
 '''
 def print_state(state):
@@ -229,7 +225,7 @@ def searchStats(state):
 
 """
 First We are generating 30 different initial states of the puzzle 
-After generating, it is displayed as textual representation 
+After generating, it is displayed as textual representation on the console
 """
 
 initial_states = []
@@ -254,6 +250,7 @@ solutions = []
 
 for i in range (0,30):
     solutions.append(searchStats(initial_states[i]))
+    print(str(i+1))
     no_of_moves.append(len(solutions[i]))
 
 # Initialize the plot
@@ -264,6 +261,9 @@ x_axis = []
 for i in range (1,31):
     x_axis.append(i)
 
+'''
+Drawing the graph on the figure as it is stated in the homework description.
+'''
 # Plot the data
 graph.bar( x_axis , no_of_moves)
 graph.set_title('Number of Moves to Reach Goal State')
@@ -361,6 +361,7 @@ for table in show2:
 
 '''
 A horizontal scrollbar is added since we may have solutions with high number of steps.
+Just to be reminder we didnt add the mouse wheel event handler. If all the solution is not visible on the screen, it should be moved right from the bottom scrollbar.
 '''
 scrollbar = Scrollbar(master,orient='horizontal')
 scrollbar.config(command=w.xview)
